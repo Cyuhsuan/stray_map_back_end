@@ -23,6 +23,7 @@ func init() {
 
 	// 初始化服務
 	service.InitUserService(config.AppConfig.UseMock)
+	service.InitStrayMapService(config.AppConfig.UseMock)
 }
 
 func main() {
@@ -31,12 +32,17 @@ func main() {
 	// 公開路由
 	router.POST("/api/auth/register", handlers.Register)
 	router.POST("/api/auth/login", handlers.Login)
+	router.GET("/api/stray_map", handlers.GetStrayMapList)
 
 	// 需要認證的路由組
 	authorized := router.Group("/api")
 	authorized.Use(middleware.AuthMiddleware())
 	{
 		authorized.GET("/user/profile", handlers.GetProfile)
+		// stray map
+		authorized.POST("/stray_map", handlers.CreateStrayMap)
+		authorized.PUT("/stray_map/:id", handlers.UpdateStrayMap)
+		authorized.DELETE("/stray_map/:id", handlers.DeleteStrayMap)
 	}
 
 	port := ":" + config.AppConfig.Port
