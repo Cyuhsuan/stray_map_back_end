@@ -1,6 +1,6 @@
 package service
 
-import "github.com/Cyuhsuan/stray_map_back_end/internal/models"
+import "stray_map_back_end/internal/models"
 
 // UserService 定義用戶服務接口
 type UserService interface {

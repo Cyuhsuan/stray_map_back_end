@@ -1,7 +1,8 @@
 package mock
 
 import (
-	"github.com/Cyuhsuan/stray_map_back_end/internal/models"
+	"stray_map_back_end/internal/models"
+
 	"golang.org/x/crypto/bcrypt"
 )
 

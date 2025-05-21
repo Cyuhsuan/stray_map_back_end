@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"github.com/Cyuhsuan/stray_map_back_end/api/handlers"
-	"github.com/Cyuhsuan/stray_map_back_end/internal/config"
-	"github.com/Cyuhsuan/stray_map_back_end/internal/middleware"
-	"github.com/Cyuhsuan/stray_map_back_end/internal/service"
+	"stray_map_back_end/api/handlers"
+	"stray_map_back_end/internal/config"
+	"stray_map_back_end/internal/middleware"
+	"stray_map_back_end/internal/service"
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"

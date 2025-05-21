@@ -3,8 +3,8 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/Cyuhsuan/stray_map_back_end/internal/auth"
-	"github.com/Cyuhsuan/stray_map_back_end/internal/service"
+	"stray_map_back_end/internal/auth"
+	"stray_map_back_end/internal/service"
 
 	"github.com/gin-gonic/gin"
 )

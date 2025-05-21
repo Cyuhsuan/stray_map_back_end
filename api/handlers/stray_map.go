@@ -4,7 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Cyuhsuan/stray_map_back_end/internal/service"
+	"stray_map_back_end/internal/service"
+
 	"github.com/gin-gonic/gin"
 )
 

@@ -3,8 +3,9 @@ package service
 import (
 	"errors"
 
-	"github.com/Cyuhsuan/stray_map_back_end/internal/mock"
-	"github.com/Cyuhsuan/stray_map_back_end/internal/models"
+	"stray_map_back_end/internal/mock"
+	"stray_map_back_end/internal/models"
+
 	"github.com/gin-gonic/gin"
 )
 

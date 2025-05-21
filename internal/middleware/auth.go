@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Cyuhsuan/stray_map_back_end/internal/auth"
+	"stray_map_back_end/internal/auth"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,7 +1,7 @@
 package mock
 
 import (
-	"github.com/Cyuhsuan/stray_map_back_end/internal/models"
+	"stray_map_back_end/internal/models"
 )
 
 var (
