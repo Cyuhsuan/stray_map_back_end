@@ -23,26 +23,6 @@ var (
 	}
 )
 
-// FindUserByUsername 根據用戶名查找用戶
-func FindUserByUsername(username string) *models.User {
-	for _, user := range Users {
-		if user.Username == username {
-			return &user
-		}
-	}
-	return nil
-}
-
-// FindUserByEmail 根據郵箱查找用戶
-func FindUserByEmail(email string) *models.User {
-	for _, user := range Users {
-		if user.Email == email {
-			return &user
-		}
-	}
-	return nil
-}
-
 // generateHashPassword 生成密碼哈希
 func generateHashPassword(password string) string {
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
