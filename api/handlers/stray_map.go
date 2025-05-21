@@ -15,11 +15,11 @@ func CreateStrayMap(c *gin.Context) {
 		return
 	}
 
-	service.StrayMapServiceProvider.CreateStrayMap(&request)
+	service.StrayMapServiceProvider.CreateStrayMap(c, &request)
 }
 
 func GetStrayMapList(c *gin.Context) {
-	strayMaps, err := service.StrayMapServiceProvider.GetStrayMapList()
+	strayMaps, err := service.StrayMapServiceProvider.GetStrayMapList(c)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -35,7 +35,7 @@ func GetStrayMapDetail(c *gin.Context) {
 		return
 	}
 
-	strayMap, err := service.StrayMapServiceProvider.GetStrayMapDetail(uint(id))
+	strayMap, err := service.StrayMapServiceProvider.GetStrayMapDetail(c, uint(id))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
@@ -57,7 +57,7 @@ func UpdateStrayMap(c *gin.Context) {
 		return
 	}
 
-	service.StrayMapServiceProvider.UpdateStrayMap(uint(id), &request)
+	service.StrayMapServiceProvider.UpdateStrayMap(c, uint(id), &request)
 }
 
 func DeleteStrayMap(c *gin.Context) {
@@ -68,6 +68,6 @@ func DeleteStrayMap(c *gin.Context) {
 		return
 	}
 
-	service.StrayMapServiceProvider.DeleteStrayMap(uint(id))
+	service.StrayMapServiceProvider.DeleteStrayMap(c, uint(id))
 	c.JSON(http.StatusOK, gin.H{"message": "stray map deleted successfully"})
 }

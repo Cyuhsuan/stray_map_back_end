@@ -1,15 +1,18 @@
 package service
 
-import "github.com/Cyuhsuan/stray_map_back_end/internal/models"
+import (
+	"github.com/Cyuhsuan/stray_map_back_end/internal/models"
+	"github.com/gin-gonic/gin"
+)
 
 // UserService 定義用戶服務接口
 type StrayMapService interface {
 	// 用戶相關操作
-	CreateStrayMap(strayMap *CreateStrayMapRequest) error
-	GetStrayMapList() ([]models.StrayMap, error)
-	GetStrayMapDetail(id uint) (*models.StrayMap, error)
-	UpdateStrayMap(id uint, strayMap *UpdateStrayMapRequest) error
-	DeleteStrayMap(id uint) error
+	CreateStrayMap(c *gin.Context, strayMap *CreateStrayMapRequest) error
+	GetStrayMapList(c *gin.Context) ([]models.StrayMap, error)
+	GetStrayMapDetail(c *gin.Context, id uint) (*models.StrayMap, error)
+	UpdateStrayMap(c *gin.Context, id uint, strayMap *UpdateStrayMapRequest) error
+	DeleteStrayMap(c *gin.Context, id uint) error
 }
 
 type CreateStrayMapRequest struct {

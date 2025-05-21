@@ -5,6 +5,7 @@ import (
 
 	"github.com/Cyuhsuan/stray_map_back_end/internal/mock"
 	"github.com/Cyuhsuan/stray_map_back_end/internal/models"
+	"github.com/gin-gonic/gin"
 )
 
 type mockStrayMapService struct {
@@ -18,10 +19,11 @@ func NewMockStrayMapService() StrayMapService {
 	}
 }
 
-func (s *mockStrayMapService) CreateStrayMap(strayMap *CreateStrayMapRequest) error {
+func (s *mockStrayMapService) CreateStrayMap(c *gin.Context, strayMap *CreateStrayMapRequest) error {
+	userID := c.GetUint("userID")
 	s.strayMaps = append(s.strayMaps, models.StrayMap{
 		ID:          uint(len(s.strayMaps) + 1),
-		UserID:      1, // TODO: 需要從 context 中獲取當前登入用戶的 ID
+		UserID:      userID,
 		Title:       strayMap.Title,
 		Description: strayMap.Description,
 		Location:    strayMap.Location,
@@ -29,11 +31,11 @@ func (s *mockStrayMapService) CreateStrayMap(strayMap *CreateStrayMapRequest) er
 	return nil
 }
 
-func (s *mockStrayMapService) GetStrayMapList() ([]models.StrayMap, error) {
+func (s *mockStrayMapService) GetStrayMapList(c *gin.Context) ([]models.StrayMap, error) {
 	return s.strayMaps, nil
 }
 
-func (s *mockStrayMapService) GetStrayMapDetail(id uint) (*models.StrayMap, error) {
+func (s *mockStrayMapService) GetStrayMapDetail(c *gin.Context, id uint) (*models.StrayMap, error) {
 	for _, strayMap := range s.strayMaps {
 		if strayMap.ID == id {
 			return &strayMap, nil
@@ -42,7 +44,7 @@ func (s *mockStrayMapService) GetStrayMapDetail(id uint) (*models.StrayMap, erro
 	return nil, errors.New("stray map not found")
 }
 
-func (s *mockStrayMapService) UpdateStrayMap(id uint, strayMap *UpdateStrayMapRequest) error {
+func (s *mockStrayMapService) UpdateStrayMap(c *gin.Context, id uint, strayMap *UpdateStrayMapRequest) error {
 	for i, existingMap := range s.strayMaps {
 		if existingMap.ID == id {
 			s.strayMaps[i] = models.StrayMap{
@@ -58,7 +60,7 @@ func (s *mockStrayMapService) UpdateStrayMap(id uint, strayMap *UpdateStrayMapRe
 	return errors.New("stray map not found")
 }
 
-func (s *mockStrayMapService) DeleteStrayMap(id uint) error {
+func (s *mockStrayMapService) DeleteStrayMap(c *gin.Context, id uint) error {
 	for i, strayMap := range s.strayMaps {
 		if strayMap.ID == id {
 			s.strayMaps = append(s.strayMaps[:i], s.strayMaps[i+1:]...)
